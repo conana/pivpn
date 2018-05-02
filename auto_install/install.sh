@@ -904,7 +904,7 @@ EOF
 
   	if [[ ${APPLY_TWO_POINT_FOUR} == true ]]; then
   		  #If they enabled 2.4 change compression algorithm and use tls-crypt instead of tls-auth to encrypt control channel
-  		  $SUDO sed -i "s/comp-lzo/compress lz4/" /etc/openvpn/server.conf
+  		  $SUDO sed -i "s/comp-lzo no/#compress lz4/" /etc/openvpn/server.conf
   		  $SUDO sed -i "s/tls-auth \/etc\/openvpn\/easy-rsa\/pki\/ta.key 0/tls-crypt \/etc\/openvpn\/easy-rsa\/pki\/ta.key/" /etc/openvpn/server.conf
   	fi
 
@@ -1019,7 +1019,7 @@ confOVPN() {
 
   	if [[ ${APPLY_TWO_POINT_FOUR} == true ]]; then
     		#If they enabled 2.4 change compression algorithm and remove key-direction options since it's not required
-    		$SUDO sed -i "s/comp-lzo/compress lz4/" /etc/openvpn/easy-rsa/pki/Default.txt
+    		$SUDO sed -i "s/comp-lzo no/#compress lz4/" /etc/openvpn/easy-rsa/pki/Default.txt
     		$SUDO sed -i "/key-direction 1/d" /etc/openvpn/easy-rsa/pki/Default.txt
   	fi
 
